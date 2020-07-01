@@ -1,0 +1,52 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+  
+  <PropertyGroup>
+    <TargetFrameworks>monoandroid10.0</TargetFrameworks>   
+    <AssemblyName>Com.Zerobranch.SwipeLayout</AssemblyName>
+    <RootNamespace>Com.Zerobranch.SwipeLayout</RootNamespace>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Description>Binding library of https://github.com/zerobranch/SwipeLayout</Description>
+    <PackageId>Nivaes.Droid.Zerobranch.SwipeLayout</PackageId>
+    <PackageTags>xamarin;android;monodroid;zerobranch;swipelayout</PackageTags>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsBindingProject>true</IsBindingProject>
+    <OutputType>Library</OutputType>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AndroidUseManagedDesignTimeResourceGenerator>False</AndroidUseManagedDesignTimeResourceGenerator>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Resources\**\*.cs" />
+    <Compile Remove="Resources\**\*.cs" />
+    <AndroidResource Include="Resources\**\*.xml" Generator="MSBuild:UpdateAndroidResources" />
+    <LibraryProjectZip Include="Jars\*.aar" />
+    <EmbeddedJar Include="Jars\Embedded\*.jar" />
+    <EmbeddedReferenceJar Include="Jars\Reference\*.jar" />
+    <TransformFile Include="Transforms\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Additions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0.1" />
+  </ItemGroup>
+
+</Project>
