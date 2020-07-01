@@ -8,7 +8,7 @@
 
     public class HorizontalAdapter : RecyclerView.Adapter
     {
-        private List<string> mItems;
+        private readonly List<string> mItems;
 
         public HorizontalAdapter(List<string> items)
         {
@@ -33,6 +33,11 @@
         {
             var ItemHolder = (ItemHolder)holder;
             ItemHolder.DragItem.Text = mItems[position];
+        }
+
+        public override int GetItemViewType(int position)
+        {
+            return position;
         }
 
         public override int ItemCount => mItems.Count;
@@ -62,28 +67,34 @@
             }
 
             public ItemHolder(View itemView)
-                :base(itemView)
+                : base(itemView)
             {
                 DragItem = itemView.FindViewById<TextView>(Resource.Id.drag_item);
                 mSwipeLayout = itemView.FindViewById<Com.Zerobranch.Layout.SwipeLayout>(Resource.Id.swipe_layout);
                 mLeftView = itemView.FindViewById<ImageView>(Resource.Id.left_view);
                 mRightView = itemView.FindViewById<ImageView>(Resource.Id.right_view);
 
-                mRightView.Click += (o, e) =>
+                if (mRightView != null)
                 {
-                    if (base.AdapterPosition != RecyclerView.NoPosition)
+                    mRightView.Click += (o, e) =>
                     {
-                        mAdapter.Remove(itemView.Context, base.AdapterPosition);
-                    }
-                };
+                        if (base.AdapterPosition != RecyclerView.NoPosition)
+                        {
+                            mAdapter.Remove(itemView.Context, base.AdapterPosition);
+                        }
+                    };
+                }
 
-                mLeftView.Click += (o, e) =>
+                if (mLeftView != null)
                 {
-                    if (base.AdapterPosition != RecyclerView.NoPosition)
+                    mLeftView.Click += (o, e) =>
                     {
-                        mAdapter.Upload(itemView.Context, base.AdapterPosition);
-                    }
-                };
+                        if (base.AdapterPosition != RecyclerView.NoPosition)
+                        {
+                            mAdapter.Upload(itemView.Context, base.AdapterPosition);
+                        }
+                    };
+                }
             }
         }
     }

@@ -8,7 +8,7 @@
 
     public class LeftAdapter : RecyclerView.Adapter
     {
-        private List<string> mItems;
+        private readonly List<string> mItems;
 
         public LeftAdapter(List<string> items)
         {
@@ -34,6 +34,11 @@
         {
             var ItemHolder = (ItemHolder)holder;
             ItemHolder.DragItem.Text = mItems[position];
+        }
+
+        public override int GetItemViewType(int position)
+        {
+            return position;
         }
 
         public override int ItemCount => mItems.Count;
@@ -70,21 +75,27 @@
                 mLeftView = itemView.FindViewById<ImageView>(Resource.Id.left_view);
                 mRightView = itemView.FindViewById<ImageView>(Resource.Id.right_view);
 
-                mRightView.Click += (o, e) =>
+                if (mRightView != null)
                 {
-                    if (base.AdapterPosition != RecyclerView.NoPosition)
+                    mRightView.Click += (o, e) =>
                     {
-                        mAdapter.Remove(itemView.Context, base.AdapterPosition);
-                    }
-                };
+                        if (base.AdapterPosition != RecyclerView.NoPosition)
+                        {
+                            mAdapter.Remove(itemView.Context, base.AdapterPosition);
+                        }
+                    };
+                }
 
-                mLeftView.Click += (o, e) =>
+                if (mLeftView != null)
                 {
-                    if (base.AdapterPosition != RecyclerView.NoPosition)
+                    mLeftView.Click += (o, e) =>
                     {
-                        mAdapter.Upload(itemView.Context, base.AdapterPosition);
-                    }
-                };
+                        if (base.AdapterPosition != RecyclerView.NoPosition)
+                        {
+                            mAdapter.Upload(itemView.Context, base.AdapterPosition);
+                        }
+                    };
+                }
             }
         }
     }
