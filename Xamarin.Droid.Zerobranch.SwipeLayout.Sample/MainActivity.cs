@@ -17,15 +17,15 @@ namespace Nivaes.Zerobranch.SwipeLayout.Droid
             base.OnCreate(savedInstanceState);
 
             base.SetContentView(Resource.Layout.activity_main);
-            //base.FindViewById<View>(Resource.Id.left).Click += (s, o)=>
-            //{
-            //    base.StartActivity(new Intent(base.GetBaseContext(), LeftActivity.class));
-            //};
 
+            base.FindViewById<View>(Resource.Id.left).Click += (_, __) =>
+            {
+                base.StartActivity(new Intent(base.BaseContext, typeof(LeftActivity)));
+            };
 
             base.FindViewById<View>(Resource.Id.right).Click += (s, o)=>
             {
-                base.StartActivity(new Intent(base.BaseContext, typeof(HorizontalActivity)));
+                base.StartActivity(new Intent(base.BaseContext, typeof(RightActivity)));
             };
 
             base.FindViewById<View>(Resource.Id.horizontal).Click += (s, o) =>
