@@ -19,13 +19,13 @@
         {
             return viewType switch
             {
-                0 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_0, viewGroup, false)),
-                1 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_1, viewGroup, false)),
-                2 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_2, viewGroup, false)),
-                3 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_3, viewGroup, false)),
-                4 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_4, viewGroup, false)),
-                5 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_5, viewGroup, false)),
-                _ => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_6, viewGroup, false)),
+                0 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_0, viewGroup, false)),
+                1 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_1, viewGroup, false)),
+                2 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_2, viewGroup, false)),
+                3 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_3, viewGroup, false)),
+                4 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_4, viewGroup, false)),
+                5 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_5, viewGroup, false)),
+                _ => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.horizontal_layout_item_6, viewGroup, false)),
             };
         }
 
@@ -64,11 +64,7 @@
                 : base(itemView)
             {
                 mAdapter = adapter;
-            }
 
-            public ItemHolder(View itemView)
-                : base(itemView)
-            {
                 DragItem = itemView.FindViewById<TextView>(Resource.Id.drag_item);
                 mSwipeLayout = itemView.FindViewById<Com.Zerobranch.Layout.SwipeLayout>(Resource.Id.swipe_layout);
                 mLeftView = itemView.FindViewById<ImageView>(Resource.Id.left_view);
@@ -76,7 +72,7 @@
 
                 if (mRightView != null)
                 {
-                    mRightView.Click += (o, e) =>
+                    mRightView.Click += (_, __) =>
                     {
                         if (base.AdapterPosition != RecyclerView.NoPosition)
                         {
@@ -87,7 +83,7 @@
 
                 if (mLeftView != null)
                 {
-                    mLeftView.Click += (o, e) =>
+                    mLeftView.Click += (_, __) =>
                     {
                         if (base.AdapterPosition != RecyclerView.NoPosition)
                         {

@@ -42,10 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Additions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0.1" />
   </ItemGroup>
 

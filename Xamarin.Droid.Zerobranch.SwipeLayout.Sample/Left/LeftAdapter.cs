@@ -19,14 +19,14 @@
         {
             return viewType switch
             {
-                0 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_0, viewGroup, false)),
-                1 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_1, viewGroup, false)),
-                2 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_2, viewGroup, false)),
-                3 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_3, viewGroup, false)),
-                4 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_4, viewGroup, false)),
-                5 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_5, viewGroup, false)),
-                6 => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_6, viewGroup, false)),
-                _ => new ItemHolder(LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_7, viewGroup, false)),
+                0 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_0, viewGroup, false)),
+                1 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_1, viewGroup, false)),
+                2 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_2, viewGroup, false)),
+                3 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_3, viewGroup, false)),
+                4 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_4, viewGroup, false)),
+                5 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_5, viewGroup, false)),
+                6 => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_6, viewGroup, false)),
+                _ => new ItemHolder(this, LayoutInflater.From(viewGroup.Context).Inflate(Resource.Layout.layout_item_7, viewGroup, false)),
             };
         }
 
@@ -65,11 +65,7 @@
                 : base(itemView)
             {
                 mAdapter = adapter;
-            }
-
-            public ItemHolder(View itemView)
-                :base(itemView)
-            {
+            
                 DragItem = itemView.FindViewById<TextView>(Resource.Id.drag_item);
                 mSwipeLayout = itemView.FindViewById<Com.Zerobranch.Layout.SwipeLayout>(Resource.Id.swipe_layout);
                 mLeftView = itemView.FindViewById<ImageView>(Resource.Id.left_view);
@@ -94,6 +90,25 @@
                         {
                             mAdapter.Upload(itemView.Context, base.AdapterPosition);
                         }
+                    };
+                }
+
+                if (mSwipeLayout != null)
+                {
+                    mSwipeLayout.OnOpen += (o, e) =>
+                    {
+                        if (e.Direction == Com.Zerobranch.Layout.SwipeLayout.Left && e.IsContinuous)
+                        {
+                            if (base.AdapterPosition != Com.Zerobranch.Layout.SwipeLayout.NoPosition)
+                            {
+                                mAdapter.Remove(itemView.Context, base.AdapterPosition);
+                            }
+                        }
+
+                    };
+
+                    mSwipeLayout.OnClose += (o, e) =>
+                    {
                     };
                 }
             }

@@ -1,3 +1,4 @@
 ﻿<metadata>
-    <!--<attr path="/api/package[@name='fr.ganfra.materialspinner']" name="managedName">Fr.Ganfra.MaterialSpinner</attr>-->
+    <attr path="/api/package[@name='com.zerobranch.layout']/interface[@name='SwipeLayout.SwipeActionsListener']/method[@name='onOpen' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='boolean']]/parameter[@name='p0']" name="name">direction</attr>
+    <attr path="/api/package[@name='com.zerobranch.layout']/interface[@name='SwipeLayout.SwipeActionsListener']/method[@name='onOpen' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='boolean']]/parameter[@name='p1']" name="name">isContinuous</attr>
 </metadata>
