@@ -3,27 +3,20 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0-android</TargetFramework>
-    <AssemblyName>Xamarin.Droid.Zerobranch.SwipeLayout.Sample</AssemblyName>
-    <RootNamespace>Xamarin.Droid.Zerobranch.SwipeLayout.Sample</RootNamespace>
+    <AssemblyName>Nivaes.Zerobranch.SwipeLayout.Droid</AssemblyName>
+    <RootNamespace>Nivaes.Zerobranch.SwipeLayout.Droid</RootNamespace>
 
     <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
     <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Xamarin.Droid.Zerobranch.SwipeLayout\Xamarin.Droid.Zerobranch.SwipeLayout.csproj" />
-  </ItemGroup>
-
-  <!--<PropertyGroup>
-    <IsBindingProject>true</IsBindingProject>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-    <AndroidResgenClass>Resource</AndroidResgenClass>
-  </PropertyGroup>-->
-
-  <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" />
     <PackageReference Include="Xamarin.AndroidX.RecyclerView" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Droid.Zerobranch.SwipeLayout\Xamarin.Droid.Zerobranch.SwipeLayout.csproj" />
   </ItemGroup>
   
 </Project>
