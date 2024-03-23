@@ -6,7 +6,7 @@
 
     public partial class SwipeLayout
     {
-//#pragma warning disable CS0109
+        //#pragma warning disable CS0109
         [Register("LEFT")]
         public new const int Left = 1;
 
@@ -44,15 +44,15 @@
             add
             {
                 EventHelper.AddEventHandler<ISwipeActionsListener, ISwipeActionsListenerImplementor>(
-                ref mSwipeActionsListener, CreateSwipeActionsListenerImplementor,
-                (swipeActionsListener) =>
-                {
-                    SetOnActionsListener(swipeActionsListener);
-                },
-                (implementor) =>
-                {
-                    implementor.OnOpenHandler = (EventHandler<OpenEventArgs>)Delegate.Combine(implementor.OnOpenHandler, value);
-                });
+                    ref mSwipeActionsListener, CreateSwipeActionsListenerImplementor,
+                    (swipeActionsListener) =>
+                    {
+                        SetOnActionsListener(swipeActionsListener);
+                    },
+                    (implementor) =>
+                    {
+                        implementor.OnOpenHandler = (EventHandler<OpenEventArgs>)Delegate.Combine(implementor.OnOpenHandler, value);
+                    });
             }
             remove
             {
@@ -74,15 +74,15 @@
             add
             {
                 EventHelper.AddEventHandler<ISwipeActionsListener, ISwipeActionsListenerImplementor>(
-                ref mSwipeActionsListener, CreateSwipeActionsListenerImplementor,
-                (swipeActionsListener) =>
-                {
-                    SetOnActionsListener(swipeActionsListener);
-                },
-                (implementor) =>
-                {
-                    implementor.OnCloseHandler = (EventHandler)Delegate.Combine(implementor.OnCloseHandler, value);
-                });
+                    ref mSwipeActionsListener, CreateSwipeActionsListenerImplementor,
+                    (swipeActionsListener) =>
+                    {
+                        SetOnActionsListener(swipeActionsListener);
+                    },
+                    (implementor) =>
+                    {
+                        implementor.OnCloseHandler = (EventHandler)Delegate.Combine(implementor.OnCloseHandler, value);
+                    });
             }
             remove
             {
